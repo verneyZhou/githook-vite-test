@@ -21,15 +21,10 @@ jobs:
           npm run build
 
       - name: Deploy   # 部署
-        # uses: JamesIves/github-pages-deploy-action@v4.3.3
-        # with:
-        #   branch: feature/git-page # 部署后提交到那个分支
-        #   folder: dist # 这里填打包好的目录名称
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout -b feature/git-page
-          npm run cp
-          git add .
-          git commit -m 'deploy'
-          git push origin feature/git-page
+        uses: JamesIves/github-pages-deploy-action@3.7.1 # 使用别人写好的 actions
+        with:  # 自定义环境变量
+          ACCESS_TOKEN: ${{ secrets.GITHOOK_VITE_TEST }}
+          BRANCH: feature/git-page
+          FOLDER: dist
+          REPOSITORY_NAME: verneyzhou/verneyzhou.github.io # 这是我的 github page 地址
+          TARGET_FOLDER: githook-vite-test # 打包的文件将放到静态服务器 githook-vite-test 目录下
