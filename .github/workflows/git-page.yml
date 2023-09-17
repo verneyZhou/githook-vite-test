@@ -1,18 +1,23 @@
-name: CI Github Pages
+name: CI Github Pages # workflow 名称
+
+# 设置触发条件
 on:
   #监听push操作
   push:
     branches:
       - main # 这里只配置了main分支，所以只有推送main分支才会触发以下任务
 
+
+# 设置权限为write，这样才能推送代码到仓库，否则会报错
 permissions:
   contents: write
 
+# 任务，可以有多个
 jobs:
-  # 任务ID
+  # 任务ID，可以自定义
   build-and-deploy:
     # 运行环境
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 构建环境使用 ubuntu
     # 步骤
     steps:
       # 官方action，将代码拉取到虚拟机
@@ -24,11 +29,11 @@ jobs:
           npm install
           npm run build
 
-      - name: Deploy   # 部署
+      - name: Deploy   # 部署， 将打包内容发布到 github page
         uses: JamesIves/github-pages-deploy-action@3.7.1 # 使用别人写好的 actions
         with:  # 自定义环境变量
-          ACCESS_TOKEN: ${{ secrets.GITHOOK_VITE_TEST }}
-          BRANCH: feature/git-page
-          FOLDER: dist
-        #   REPOSITORY_NAME: verneyzhou/verneyzhou.github.io # 这是我的 github page 地址
+          ACCESS_TOKEN: ${{ secrets.GITHOOK_VITE_TEST }}  # github token，需要在仓库的 secrets 中配置
+          BRANCH: feature/git-page # 部署到哪个分支
+          FOLDER: dist # 打包后的文件夹
+        #   REPOSITORY_NAME: verneyzhou/verneyzhou.github.io # 这是我的 github page 仓库
         #   TARGET_FOLDER: githook-vite-test # 打包的文件将放到静态服务器 githook-vite-test 目录下

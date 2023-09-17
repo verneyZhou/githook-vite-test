@@ -15,6 +15,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <p>哈哈哈 你个老六~~~</p>
   <p>main分支提交123456</p>
   <p>main再次提交了修改~~1234456sdfghgfdgdf</p>
+  <p>哈哈哈123456</p>
 </template>
 
 <style scoped>
