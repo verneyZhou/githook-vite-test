@@ -14,7 +14,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <HelloWorld msg="这是一个 Github Actionns测试项目" />
   <p>哈哈哈 你个老六~~~</p>
   <p>main分支提交123456</p>
-  <p>main再次提交了修改~~123456</p>
+  <p>main再次提交了修改~~1234456sdfghgfdgdf</p>
 </template>
 
 <style scoped>
