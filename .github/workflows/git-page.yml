@@ -21,7 +21,15 @@ jobs:
           npm run build
 
       - name: Deploy   # 部署
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
-        with:
-          branch: feature/git-page # 部署后提交到那个分支
-          folder: dist # 这里填打包好的目录名称
+        # uses: JamesIves/github-pages-deploy-action@v4.3.3
+        # with:
+        #   branch: feature/git-page # 部署后提交到那个分支
+        #   folder: dist # 这里填打包好的目录名称
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b feature/git-page
+          npm run cp
+          git add .
+          git commit -m 'deploy'
+          git push origin feature/git-page
