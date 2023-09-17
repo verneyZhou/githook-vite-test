@@ -9,7 +9,7 @@ export default ({command, mode}) => {
 
   console.log('command', command, mode, env)
   return defineConfig({
-    base: env ? `/${env}/githook-vite-test/` : '/githook-vite-test/', // 基础路径
+    base: './', // 基础路径
     plugins: [vue()],
   })
 }

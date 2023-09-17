@@ -13,6 +13,8 @@ import HelloWorld from './components/HelloWorld.vue'
   </div>
   <HelloWorld msg="这是一个 Github Actionns测试项目" />
   <p>哈哈哈 你个老六~~~</p>
+  <p>main分支提交</p>
+  <p>feature/git-page分支修改</p>
 </template>
 
 <style scoped>
