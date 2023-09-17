@@ -3,7 +3,7 @@ on:
   #监听push操作
   push:
     branches:
-      - feature/git-page # 这里只配置了main分支，所以只有推送main分支才会触发以下任务
+      - main # 这里只配置了main分支，所以只有推送main分支才会触发以下任务
 jobs:
   # 任务ID
   build-and-deploy:
@@ -23,5 +23,5 @@ jobs:
       - name: Deploy   # 部署
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          branch: gh-pages # 部署后提交到那个分支
+          branch: feature/git-page # 部署后提交到那个分支
           folder: dist # 这里填打包好的目录名称
