@@ -27,5 +27,7 @@ node v16+
 
 
 
+### git push 自动部署到阿里云服务器
 
+- feature/git-aliyun 分支 `git push`后，自动执行 `aliyun-deploy.yml`
 
