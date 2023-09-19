@@ -25,9 +25,13 @@ node v16+
 
 - 之后就可以在`https://verneyzhou.github.io/githook-vite-test`直接访问了~
 
+> 第三方部署GitPage脚本 `JamesIves/github-pages-deploy-action@3.7.1`: https://github.com/JamesIves/github-pages-deploy-action
+
 
 
 ### git push 自动部署到阿里云服务器
 
 - feature/git-aliyun 分支 `git push`后，自动执行 `aliyun-deploy.yml`
 
+
+> 第三方部署阿里云服务器脚本 `easingthemes/ssh-deploy@main`: https://github.com/easingthemes/ssh-deploy

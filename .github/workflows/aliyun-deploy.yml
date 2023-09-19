@@ -28,4 +28,11 @@ jobs:
           SOURCE: dist # 这是要复制到阿里云静态服务器的文件夹名称
           REMOTE_HOST: '123.57.172.182' # 你的阿里云公网地址
           REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
-          TARGET: /root/nginx/upload/githook-vite-test # 打包后的 dist 文件夹将放在 /root/nginx/upload/githook-vite-test
+          TARGET: /root/nginx/upload/dev/githook-vite-test # 打包后的 dist 文件夹将放在 /root/nginx/upload/dev/githook-vite-test
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
