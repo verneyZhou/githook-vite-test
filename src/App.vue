@@ -16,7 +16,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <p>main分支提交123456</p>
   <p>main再次提交了修改~~1234456sdfghgfdgdf</p>
   <p>哈哈哈123456</p>
-  <p>验证阿里云自动部署~~again12345</p>
+  <p>验证阿里云自动部署~~again1234511</p>
 </template>
 
 <style scoped>
