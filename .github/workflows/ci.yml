@@ -8,6 +8,7 @@ on:
   pull_request:
     branches:
       - '**'
+
 jobs:
   linter: # 任务ID，可以自定义
     runs-on: ubuntu-latest # 构建环境使用 ubuntu
@@ -16,8 +17,30 @@ jobs:
       - uses: actions/setup-node@v2 # 安装node环境
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm run lint
+      
+      # 检查缓存
+      # 如果key命中缓存则直接将缓存的文件还原到 path 目录，从而减少流水线运行时间
+      # 若 key 没命中缓存时，在当前Job成功完成时将自动创建一个新缓存
+      - name: Cache
+        # 缓存命中结果会存储在steps.[id].outputs.cache-hit里，该变量在继后的step中可读
+        id: cache-dependencies
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ./node_modules # 缓存文件目录的路径
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # key中定义缓存标志位的生成方式。runner.OS指当前环境的系统
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      # 安装依赖
+      - name: Install Dependencies
+        # 如果缓存标志位没命中，则执行该step。否则就跳过该step
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci  # npm ci和npm install命令一样，是用来安装依赖的命令, npm i依赖package.json，而npm ci依赖package-lock.json
+
+      # 代码格式检查
+      - name: Running Lint
+        run: npm run lint
   # tests:
   #   needs: linter
   #   runs-on: ubuntu-latest
