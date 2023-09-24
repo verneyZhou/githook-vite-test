@@ -1,0 +1,54 @@
+name: Rollback
+on:
+  workflow_dispatch: # 触发条件Event: workflow_dispatch; 该事件还能支持手动输入信息，然后把这个信息当作环境变量供整个Workflow读取
+    inputs:
+      # 这里的version指的是我们要部署的哪个发布版本的制品
+      # 这里输入的信息会作为github.event.inputs.version供此Workflow下的job读取
+      version:
+        description: "choose a version to deploy"
+        required: true
+jobs:
+  Rollback:
+    runs-on: ubuntu-latest
+    steps:
+      # 输出我们输入的version值
+      - name: Echo Version
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          echo "Version: $VERSION"
+  
+      # 获取对应发布版本的制品
+      - name: Download Artifact
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          version: "tags/${{ github.event.inputs.version }}"
+          # 指定存放制品的压缩包
+          file: "assets.zip"
+          # 这里需要CD Workflow中准备工作里的Github Personal Access Token
+          token: ${{ secrets.GITHOOK_VITE_TEST }}
+  
+      # 下载压缩包后解压
+      - name: Unzip
+        run: |
+          unzip assets.zip
+          ls -a ./dist
+
+      # 把部署到git page
+      - name: Upload to GitPage Deploy   # 部署， 将打包内容发布到 github page
+        uses: JamesIves/github-pages-deploy-action@3.7.1 # 使用别人写好的 actions
+        with:  # 自定义环境变量
+          ACCESS_TOKEN: ${{ secrets.GITHOOK_VITE_TEST }}  # github token，需要在仓库的 secrets 中配置
+          BRANCH: feature/git-page # 部署到哪个分支
+          FOLDER: dist # 打包后的文件夹
+
+      # 把制品放到部署阿里云服务器上
+      - name: Upload to Aliyun Server
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: '123.57.172.182' # 你的阿里云公网地址
+          REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
+          TARGET: /root/nginx/upload/dev/githook-vite

@@ -61,3 +61,8 @@ node v16+
 
 - 单元测试：[vitest](https://cn.vitest.dev/guide/coverage.html)
 
+
+
+### 添加回滚机制
+
+- `rollback.yml`

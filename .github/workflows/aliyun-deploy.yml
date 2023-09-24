@@ -34,6 +34,7 @@ jobs:
 
     - name: Run build task
       run: OUTDIR=githook-vite npm run build  # 打包到 githook-vite 文件夹
+
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main # 使用的 action, 部署到阿里云服务器
       env:
