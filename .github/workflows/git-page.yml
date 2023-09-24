@@ -37,3 +37,56 @@ jobs:
           FOLDER: dist # 打包后的文件夹
         #   REPOSITORY_NAME: verneyzhou/verneyzhou.github.io # 这是我的 github page 仓库
         #   TARGET_FOLDER: githook-vite-test # 打包的文件将放到静态服务器 githook-vite-test 目录下
+
+
+  zip-and-release: # 打包并发版
+    needs: build-and-deploy # 依赖linter任务
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      # 从package.json里获取version属性的值
+      # 在CD Workflow中会给每个生成的制品打上标签，而标签取值于version值
+      - name: Read Version
+        # 读取出来的值会放在steps.[id].outputs.value供其他步骤step读取
+        id: version
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./package.json
+          property: version
+
+      # 压缩制品，压缩到bundle.zip压缩包里
+      - name: Building
+        run: |
+          yarn build
+          zip -r bundle ./dist/**
+
+      # 基于当前commit进行版本发布(Create a release)，tag_name是v前缀加上package.json的version值
+      - name: Create GitHub Release
+        # 此步骤中，版本发布后会返回对应的url，以供下面上传制品的步骤中读取使用
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHOOK_VITE_TEST }}
+        with:
+          tag_name: v${{steps.version.outputs.value}}
+          release_name: v${{steps.version.outputs.value}}
+          draft: false
+          prerelease: false
+
+      # 把bundle.zip上传到仓库对应的发布版本Release上
+      - name: Update Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHOOK_VITE_TEST }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bundle.zip
+          asset_name: bundle.zip
+          asset_content_type: application/zip # 格式
+
+
