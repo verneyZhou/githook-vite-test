@@ -61,7 +61,6 @@ jobs:
       # 压缩制品，压缩到bundle.zip压缩包里
       - name: Building
         run: |
-          yarn build
           zip -r bundle ./dist/**
 
       # 基于当前commit进行版本发布(Create a release)，tag_name是v前缀加上package.json的version值
