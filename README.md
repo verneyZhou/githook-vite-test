@@ -50,9 +50,11 @@ eslint + prettier
 
 - 添加husky
 
-- 添加Commitlint规范
+- 添加Commitlint规范: git commit -m"feat: submit"
+
+[@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
 
 
-
+- 单元测试：[vitest](https://cn.vitest.dev/guide/coverage.html)
 
 

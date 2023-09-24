@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "vitest"
   },
   "dependencies": {
     "vue": "^3.3.4"
@@ -30,6 +31,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vitest": "^0.34.5"
   }
 }
