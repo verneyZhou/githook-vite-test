@@ -49,6 +49,21 @@ jobs:
         with:
           node-version: 16
 
+      - name: Cache
+        # 缓存命中结果会存储在steps.[id].outputs.cache-hit里，该变量在继后的step中可读
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules # 缓存文件目录的路径
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # key中定义缓存标志位的生成方式。runner.OS指当前环境的系统
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install npm dependencies
+        # 如果缓存标志位没命中，则执行该step。否则就跳过该step
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm install
+
       # 从package.json里获取version属性的值
       # 在CD Workflow中会给每个生成的制品打上标签，而标签取值于version值
       - name: Read Version
@@ -59,9 +74,12 @@ jobs:
           path: ./package.json
           property: version
 
-      # 压缩制品，压缩到bundle.zip压缩包里
+      
+
+      # 打包, 压缩制品，压缩到bundle.zip压缩包里
       - name: Building
         run: |
+          npm run build
           pwd & ls
           zip -r bundle ./dist/**
 
