@@ -24,14 +24,14 @@ jobs:
         with:
           version: "tags/${{ github.event.inputs.version }}"
           # 指定存放制品的压缩包
-          file: "assets.zip"
+          file: "bundle.zip"
           # 这里需要CD Workflow中准备工作里的Github Personal Access Token
           token: ${{ secrets.GITHOOK_VITE_TEST }}
   
       # 下载压缩包后解压
       - name: Unzip
         run: |
-          unzip assets.zip
+          unzip bundle.zip
           ls -a ./dist
 
       # 把部署到git page
