@@ -50,5 +50,9 @@ eslint + prettier
 
 - 添加husky
 
+- 添加Commitlint规范
+
+
+
 
 
