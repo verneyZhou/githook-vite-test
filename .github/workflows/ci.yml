@@ -25,7 +25,6 @@ jobs:
         # 缓存命中结果会存储在steps.[id].outputs.cache-hit里，该变量在继后的step中可读
         id: cache-dependencies
         uses: actions/cache@v3
-        id: npm-cache
         with:
           path: ./node_modules # 缓存文件目录的路径
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # key中定义缓存标志位的生成方式。runner.OS指当前环境的系统
