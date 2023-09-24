@@ -44,7 +44,17 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
-          node-version: 16 
+          node-version: 16
+      
+      - name: Cache
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       # 安装依赖
       - name: Install Dependencies
         # 如果缓存标志位没命中，则执行该step。否则就跳过该step
