@@ -2,7 +2,7 @@
   "name": "githook-vite-test",
   "homepage": "https://verneyzhou.github.io/githook-vite-test",
   "private": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite  --mode dev",

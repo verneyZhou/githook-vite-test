@@ -42,13 +42,13 @@ jobs:
           BRANCH: feature/git-page # 部署到哪个分支
           FOLDER: dist # 打包后的文件夹
 
-      # 把制品放到部署阿里云服务器上
-      - name: Upload to Aliyun Server
-        uses: easingthemes/ssh-deploy@v2.0.7
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
-          ARGS: "-avzr --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: '123.57.172.182' # 你的阿里云公网地址
-          REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
-          TARGET: /root/nginx/upload/dev/githook-vite
+      # # 把制品放到部署阿里云服务器上
+      # - name: Upload to Aliyun Server
+      #   uses: easingthemes/ssh-deploy@v2.0.7
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
+      #     ARGS: "-avzr --delete"
+      #     SOURCE: "dist/"
+      #     REMOTE_HOST: '123.57.172.182' # 你的阿里云公网地址
+      #     REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
+      #     TARGET: /root/nginx/upload/dev/githook-vite
