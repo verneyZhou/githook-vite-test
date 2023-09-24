@@ -1,0 +1,31 @@
+name: CI
+
+# 监听任意分支的pull或push都会触发
+on:
+  push:
+    branches:
+      - '**' # 任意分支
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  linter: # 任务ID，可以自定义
+    runs-on: ubuntu-latest # 构建环境使用 ubuntu
+    steps:
+      - uses: actions/checkout@v3 # 官方action，将代码拉取到虚拟机
+      - uses: actions/setup-node@v2 # 安装node环境
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run lint
+  # tests:
+  #   needs: linter
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 16
+  #     - run: npm ci
+  #     - run: npm run test
+

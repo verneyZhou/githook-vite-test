@@ -45,4 +45,7 @@ node v16+
 eslint + prettier
 
 
-ci.yaml
+`ci.yml`
+
+
+
