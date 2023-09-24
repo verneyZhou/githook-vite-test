@@ -28,6 +28,7 @@ jobs:
         run: |
           npm install
           npm run build
+          pwd & ls
 
       - name: Deploy   # 部署， 将打包内容发布到 github page
         uses: JamesIves/github-pages-deploy-action@3.7.1 # 使用别人写好的 actions
@@ -61,6 +62,7 @@ jobs:
       # 压缩制品，压缩到bundle.zip压缩包里
       - name: Building
         run: |
+          pwd & ls
           zip -r bundle ./dist/**
 
       # 基于当前commit进行版本发布(Create a release)，tag_name是v前缀加上package.json的version值
