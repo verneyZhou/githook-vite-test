@@ -1,0 +1,16 @@
+
+/build/
+/config/
+/dist/
+/docs/
+
+public
+node_modules
+.history
+.husky
+.github
+.vscode
+dist
+*.d.ts
+*.svg
+yarn.lock
