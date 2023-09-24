@@ -40,7 +40,7 @@ jobs:
         #   TARGET_FOLDER: githook-vite-test # 打包的文件将放到静态服务器 githook-vite-test 目录下
 
 
-  zip-and-release: # 打包并发版
+  zip-and-release: # 生成压缩包并发版
     needs: build-and-deploy # 依赖linter任务
     runs-on: ubuntu-latest
     steps:

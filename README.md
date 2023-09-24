@@ -1,5 +1,8 @@
 # Vue 3 + Vite + Github Actions
 
+![CI](https://github.com/verneyZhou/githook-vite-test/actions/workflows/ci.yml/badge.svg)
+
+![CD](https://github.com/verneyZhou/githook-vite-test/actions/workflows/git-page.yml/badge.svg)
 
 这是一个github actions的测试项目~
 
@@ -28,6 +31,7 @@ node v16+
 > 第三方部署GitPage脚本 `JamesIves/github-pages-deploy-action@3.7.1`: https://github.com/JamesIves/github-pages-deploy-action
 
 
+- 添加自动生成压缩包并发版
 
 ### git push 自动部署到阿里云服务器
 
@@ -56,5 +60,4 @@ node v16+
 
 
 - 单元测试：[vitest](https://cn.vitest.dev/guide/coverage.html)
-
 
