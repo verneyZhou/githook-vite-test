@@ -41,14 +41,14 @@ node v16+
 
 ### 配置代码规范校验
 
-
-eslint + prettier
-
-
-`ci.yml`
+- eslint + prettier
 
 
-- 添加husky
+- `ci.yml`
+> 每次代码提交都会执行~
+
+
+- 添加husky: 每次commit之前强制校验代码格式~
 
 - 添加Commitlint规范: git commit -m"feat: submit"
 
