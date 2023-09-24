@@ -35,3 +35,14 @@ node v16+
 
 
 > 第三方部署阿里云服务器脚本 `easingthemes/ssh-deploy@main`: https://github.com/easingthemes/ssh-deploy
+
+
+
+
+### 配置代码规范校验
+
+
+eslint + prettier
+
+
+ci.yaml

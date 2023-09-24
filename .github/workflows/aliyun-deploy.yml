@@ -8,31 +8,31 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 服务器环境
 
     steps:
     - uses: actions/checkout@v1
     - name: Install Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v1  # 安装 node 环境
       with:
        node-version: '16'  # 你的node版本
     - name: Install npm dependencies
       run: npm install
     - name: Run build task
-      run: OUTDIR=githook-vite npm run build
+      run: OUTDIR=githook-vite npm run build  # 打包到 githook-vite 文件夹
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main # 使用的 action, 部署到阿里云服务器
       env:
           SSH_PRIVATE_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
-          ARGS: '-rltgoDzvO --delete'
+          ARGS: '-rltgoDzvO --delete' # 上传前指令，此处用于清空TARGET下的文件
           SOURCE: githook-vite # 这是要复制到阿里云静态服务器的文件夹名称
           REMOTE_HOST: '123.57.172.182' # 你的阿里云公网地址
           REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
-          TARGET: /root/nginx/upload/dev # 打包后的 dist 文件夹将放在 /root/nginx/upload/dev 目录下
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
-          SCRIPT_AFTER: |
-            whoami
-            ls -al
-            echo $RSYNC_STDOUT
+          TARGET: /root/nginx/upload/dev # 打包后的文件夹将放在 /root/nginx/upload/dev 目录下
+          # SCRIPT_BEFORE: |
+          #   whoami
+          #   ls -al
+          # SCRIPT_AFTER: |
+          #   whoami
+          #   ls -al
+          #   echo $RSYNC_STDOUT
