@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue';
 const addFn = (a, b) => {
     return a + b;
 };
-// console.log('====addFn', addFn(3, 4));
+console.log('====addFn', addFn(3, 4));
 </script>
 
 <template>

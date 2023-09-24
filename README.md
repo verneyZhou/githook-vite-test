@@ -48,4 +48,7 @@ eslint + prettier
 `ci.yml`
 
 
+- 添加husky
+
+
 

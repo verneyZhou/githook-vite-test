@@ -10,7 +10,8 @@
     "cp": "cp -rf dist/* ./",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix"
+    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "vue": "^3.3.4"
@@ -25,6 +26,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.17.0",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "vite": "^4.4.5"
   }
