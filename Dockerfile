@@ -32,7 +32,7 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone 
 # 设置工作目录
 WORKDIR /data/web
-# 在nginx镜像中创建 /app/www文件夹
+# 在nginx镜像中创建 /app/www 文件夹
 RUN mkdir -p /app/www
 RUN pwd & ls
 # 把上一步编译出来dist文件夹拷贝到刚才新建的/app/www文件夹中
