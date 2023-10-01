@@ -29,22 +29,22 @@ jobs:
           docker build -t="verneyzhou/githook-vite-test:latest" . 
           docker push verneyzhou/githook-vite-test:latest
 
-      - name: 登录服务器, 执行脚本
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.ALIYUN_HOST }} # 远程服务器ip地址
-          username: root
-          password: ${{ secrets.ALIYUN_ROOT_PWD }}  # 用户密码
-          # 执行脚本
-          script: |
-            ./docker-deploy.sh
-
-      # - name: SSH Command
-      #   uses: D3rHase/ssh-command-action@v0.2.1
+      # - name: 登录服务器, 执行脚本
+      #   uses: appleboy/ssh-action@master
       #   with:
-      #     HOST: 123.57.172.182
-      #     PORT: 22 
-      #     USER: root
-      #     PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
-      #     COMMAND: ./docker-deploy.sh
+      #     host: ${{ secrets.ALIYUN_HOST }} # 远程服务器ip地址
+      #     username: root
+      #     password: ${{ secrets.ALIYUN_ROOT_PWD }}  # 用户密码
+      #     # 执行脚本
+      #     script: |
+      #       ./docker-deploy.sh
+
+      - name: SSH Command
+        uses: D3rHase/ssh-command-action@v0.2.1
+        with:
+          HOST: 123.57.172.182
+          PORT: 22 
+          USER: root
+          PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
+          COMMAND: ./docker-deploy.sh
 
