@@ -1,0 +1,50 @@
+name: Docker
+# 触发条件为 push
+on:
+  push:
+    branches:
+      - feature/docker
+    # 修改文件范围, 不在范围内不触发
+    paths:
+      - '.github/workflows/**'
+      - '__test__/**'
+      - 'src/**'
+# 任务
+jobs:
+  test:
+    # 运行的环境
+    runs-on: ubuntu-latest
+    # 步骤
+    steps:
+      - uses: actions/checkout@v2 # git pull
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      # 1.登录docker; 2. 执行Dockerfile,生成镜像；3.推送到镜像仓库 Docker hub
+      - name: 打包镜像, 上传 Docker Hub
+        run: |
+          docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          docker build -t="verneyzhou/githook-vite-test:latest" . 
+          docker push verneyzhou/githook-vite-test:latest
+
+      # - name: 登录服务器, 执行脚本
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.REMOTE_HOST }} # 远程服务器ip地址
+      #     username: root
+      #     password: ${{ secrets.REMOTE_PASSWORD }}  # 用户密码
+      #     # 执行脚本
+      #     script: |
+      #       ./docker-deploy.sh
+
+      - name: SSH Command
+        uses: D3rHase/ssh-command-action@v0.2.1
+        with:
+          HOST: 123.57.172.182
+          PORT: 22 
+          USER: root
+          PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
+          COMMAND: ./docker-deploy.sh
+

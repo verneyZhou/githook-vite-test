@@ -66,3 +66,12 @@ node v16+
 ### 添加回滚机制
 
 - `rollback.yml`
+
+
+
+### docker部署
+
+- 新建 `Dockerfile`和`nginx/git.conf`文件
+
+
+- 项目根目录下执行：``
