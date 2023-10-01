@@ -42,9 +42,9 @@ jobs:
       - name: SSH Command
         uses: D3rHase/ssh-command-action@v0.2.1
         with:
-          HOST: 123.57.172.182
+          HOST: ${{ secrets.ALIYUN_HOST }}
           PORT: 22 
           USER: root
           PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
-          COMMAND: ./docker-deploy.sh
+          COMMAND: pwd & ls & ./docker-deploy.sh
 
