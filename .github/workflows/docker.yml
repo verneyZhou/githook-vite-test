@@ -47,5 +47,11 @@ jobs:
           USER: root
           PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
           # chmod 添加可执行权限 => 执行
-          COMMAND: pwd & ls & chmod +x ./docker-githook-deploy.sh & ./docker-githook-deploy.sh
+          # COMMAND: pwd & ls & chmod +x ./docker-deploy.sh & ./docker-deploy.sh
+
+        # 登录docker, chmod 添加可执行权限, 执行
+        RUN: | 
+          pwd & ls
+          chmod +x ./docker-deploy.sh
+          sh ./docker-deploy.sh ${{ secrets.DOCKER_REGISTRY_USERNAME }} ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
