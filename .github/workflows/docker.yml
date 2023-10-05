@@ -46,5 +46,6 @@ jobs:
           PORT: 22 
           USER: root
           PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
+          # chmod 添加可执行权限 => 执行
           COMMAND: pwd & ls & chmod +x ./docker-githook-deploy.sh & ./docker-githook-deploy.sh
 
