@@ -11,7 +11,7 @@ on:
     #   - 'src/**'
 # 任务
 jobs:
-  test:
+  docker-deploy:
     # 运行的环境
     runs-on: ubuntu-latest
     # 步骤

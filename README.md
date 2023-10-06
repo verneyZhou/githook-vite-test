@@ -71,7 +71,10 @@ node v16+
 
 ### docker部署
 
-- 新建 `Dockerfile`和`nginx/git.conf`文件
+- 新建 `Dockerfile`和`nginx/default.conf`文件
 
+- 新建`.dockerignore`，`.github/workflow/docker.yml`
 
-- 项目根目录下执行：``
+- 服务器根目录下新建：`docker-deploy.sh`
+
+- 分支`feature/docker`push代码后，自动docker部署~
