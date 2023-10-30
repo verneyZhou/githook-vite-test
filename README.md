@@ -66,3 +66,13 @@ node v16+
 ### 添加回滚机制
 
 - `rollback.yml`
+
+
+
+### 添加Docker部署
+
+- 在`feature/docker`分支~
+
+### 添加Vercel部署
+
+- `main`分支`push`之后会自动部署vercel, 访问[githook-vite-test.vercel.app/](https://githook-vite-test.vercel.app/)~
