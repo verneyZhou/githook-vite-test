@@ -23,6 +23,8 @@ console.log('====addFn', addFn(3, 4));
     <p>哈哈哈123456</p>
     <p>验证阿里云自动部署~~ag4234234ain12345swegdfgdf</p>
     <p>添加回滚机制~~~~ v1.0.5</p>
+    <p>Vercel cli部署~~~</p>
+    <p>自动部署Vercel~~~~</p>
 </template>
 
 <style scoped>
