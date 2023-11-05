@@ -1,10 +1,26 @@
 <script setup>
+import { ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
 
 const addFn = (a, b) => {
     return a + b;
 };
 console.log('====addFn', addFn(3, 4));
+
+console.log('====12345');
+
+const hello = ref({});
+const getHelloAPI = async () => {
+    try {
+        const res = await fetch(`/api/hello?name=${'test'}`, {
+            method: 'GET',
+        });
+        hello.value = await res.json();
+        console.log('====hello', hello);
+    } catch (err) {
+        console.log('===hello=err', err);
+    }
+};
 </script>
 
 <template>
@@ -25,6 +41,10 @@ console.log('====addFn', addFn(3, 4));
     <p>添加回滚机制~~~~ v1.0.5</p>
     <p>Vercel cli部署~~~</p>
     <p>自动部署Vercel~~~~12345</p>
+    <button @click="getHelloAPI">getHelloAPI</button>
+    <pre>
+        {{ hello }}
+    </pre>
 </template>
 
 <style scoped>

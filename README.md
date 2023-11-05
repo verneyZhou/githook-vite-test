@@ -76,3 +76,27 @@ node v16+
 ### 添加Vercel部署
 
 - `main`分支`push`之后会自动部署vercel, 访问[githook-vite-test.vercel.app/](https://githook-vite-test.vercel.app/)~
+
+
+### 添加Serverless接口
+
+node v16+
+
+- npm i -g vercel
+
+- vercel login
+
+
+- 创建接口：根目录新增`api/`文件夹，里面添加接口；
+
+
+- 根目录新增`vercel.json`，自定义配置信息；
+
+- 本地开发：vercel dev --listen 3037
+> 指定端口号~
+
+
+- 部署：
+    1. `npm run build`, 
+    2. `git push` 自动触发vercel部署；或 `vercel prod`直接脚本部署~
+

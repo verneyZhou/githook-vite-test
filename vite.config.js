@@ -12,6 +12,9 @@ export default ({ command, mode }) => {
     return defineConfig({
         base: './', // 基础路径
         plugins: [vue()],
+        server: {
+            port: 3037, // 启动端口
+        },
         build: {
             outDir: OUTDIR,
         },
