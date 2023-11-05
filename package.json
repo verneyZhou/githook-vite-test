@@ -8,6 +8,7 @@
     "dev": "vite  --mode dev",
     "build": "vite build --mode prod",
     "cp": "cp -rf dist/* ./",
+    "vercel": "vercel dev --listen 3037",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
@@ -15,6 +16,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "mongodb": "^6.2.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {

@@ -77,6 +77,7 @@ node v16+
 
 - `main`分支`push`之后会自动部署vercel, 访问[githook-vite-test.vercel.app/](https://githook-vite-test.vercel.app/)~
 
+- 配置域名：[https://githook.verneyzhou-code.cn/](https://githook.verneyzhou-code.cn/)
 
 ### 添加Serverless接口
 
@@ -93,10 +94,26 @@ node v16+
 - 根目录新增`vercel.json`，自定义配置信息；
 
 - 本地开发：vercel dev --listen 3037
-> 指定端口号~
+> 可指定端口号~
 
 
 - 部署：
     1. `npm run build`, 
     2. `git push` 自动触发vercel部署；或 `vercel prod`直接脚本部署~
 
+
+
+### 引入MongoDB云数据库，新增CRUD接口
+
+
+- 安装： npm i mongodb
+> 前提是已经配置了mongoDB云数据库~
+
+
+- 新建`api/getUserName.js`文件
+
+- 代码中调用接口
+
+- 本地运行测试接口：vercel dev --listen 3037
+
+- 部署
