@@ -25,6 +25,8 @@ jobs:
       # 1.登录docker; 2. 执行Dockerfile,生成镜像；3.推送到镜像仓库 Docker hub
       - name: 打包镜像, 上传 Docker Hub
         run: |
+          echo "开始登录 Docker Hub"
+          git checkout feature/docker
           docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
           docker build -t="verneyzhou/githook-vite-test:latest" . 
           docker push verneyzhou/githook-vite-test:latest
