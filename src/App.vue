@@ -24,6 +24,8 @@ console.log('====addFn', addFn(3, 4));
     <p>验证阿里云自动部署~~ag4234234ain12345swegdfgdf</p>
     <p>添加回滚机制~~~~ v1.0.5</p>
     <p>添加docker自动部署 1111122233334445556667777888999101112~~</p>
+    <h2>Docker</h2>
+    <p>🚀🚀🚀🚀🚀🚀🚀 docker自动部署更新~~~~ 🚀🚀🚀🚀🚀</p>
 </template>
 
 <style scoped>
