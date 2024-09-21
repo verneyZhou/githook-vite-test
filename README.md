@@ -71,7 +71,17 @@ node v16+
 
 ### 添加Docker部署
 
-- 在`feature/docker`分支~
+> 在`feature/docker`分支~
+
+- 新建 `Dockerfile`和`nginx/default.conf`文件
+
+- 新建`.dockerignore`，`.github/workflow/docker.yml`
+
+- 服务器根目录下新建：`docker-deploy.sh`
+
+- 分支`feature/docker`push代码后，自动docker部署~
+
+
 
 ### 添加Vercel部署
 
@@ -117,3 +127,5 @@ node v16+
 - 本地运行测试接口：vercel dev --listen 3037
 
 - 部署
+
+
