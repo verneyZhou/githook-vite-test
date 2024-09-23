@@ -33,7 +33,7 @@ jobs:
       
       - name: 打包镜像, 上传 阿里云 Docker Registry
         run: |
-          echo "开始登录 Docker Hub"
+          echo "开始构建 Docker 镜像"
           git checkout feature/docker
           docker build -t="githook-vite-test" . 
           echo "开始登录 阿里云 Docker Registry"
