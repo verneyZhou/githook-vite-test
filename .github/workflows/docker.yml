@@ -60,5 +60,6 @@ jobs:
           USER: root
           PRIVATE_SSH_KEY: ${{ secrets.ALIYUN_ECS_KEY }}
           # chmod 添加可执行权限 => 执行
-          COMMAND: pwd & ls & chmod +x ./docker-deploy.sh & sh ./docker-deploy.sh ${{ secrets.DOCKER_REGISTRY_USERNAME }} ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          # COMMAND: pwd & ls & chmod +x ./docker-deploy.sh & sh ./docker-deploy.sh ${{ secrets.DOCKER_REGISTRY_USERNAME }} ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+          COMMAND: pwd & ls & chmod +x ./docker-deploy.sh & sh ./docker-deploy.sh ${{ secrets.DOCKER_ALI_REGISTRY_USERNAME }} ${{ secrets.DOCKER_ALI_REGISTRY_PASSWORD }}
 
