@@ -23,13 +23,24 @@ jobs:
           node-version: 16
 
       # 1.登录docker; 2. 执行Dockerfile,生成镜像；3.推送到镜像仓库 Docker hub
-      - name: 打包镜像, 上传 Docker Hub
+      # - name: 打包镜像, 上传 Docker Hub
+      #   run: |
+      #     echo "开始登录 Docker Hub"
+      #     git checkout feature/docker
+      #     docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+      #     docker build --no-cache -t="verneyzhou/githook-vite-test:latest" . 
+      #     docker push verneyzhou/githook-vite-test:latest
+      
+      - name: 打包镜像, 上传 阿里云 Docker Registry
         run: |
           echo "开始登录 Docker Hub"
           git checkout feature/docker
           docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-          docker build --no-cache -t="verneyzhou/githook-vite-test:v2" . 
-          docker push verneyzhou/githook-vite-test:v2
+          docker build --no-cache -t="verneyzhou/githook-vite-test:latest" . 
+          echo "开始登录 阿里云 Docker Registry"
+          docker login -u ${{ secrets.DOCKER_ALI_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_ALI_REGISTRY_PASSWORD }}
+          docker tag verneyzhou/githook-vite-test:latest registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0
+          docker push registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0
 
       # - name: 登录服务器, 执行脚本
       #   uses: appleboy/ssh-action@master
