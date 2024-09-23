@@ -28,8 +28,8 @@ jobs:
           echo "开始登录 Docker Hub"
           git checkout feature/docker
           docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-          docker build --no-cache -t="verneyzhou/githook-vite-test:latest" . 
-          docker push verneyzhou/githook-vite-test:latest
+          docker build --no-cache -t="verneyzhou/githook-vite-test:v2" . 
+          docker push verneyzhou/githook-vite-test:v2
 
       # - name: 登录服务器, 执行脚本
       #   uses: appleboy/ssh-action@master
