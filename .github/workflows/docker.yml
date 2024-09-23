@@ -38,7 +38,7 @@ jobs:
           docker login -u ${{ secrets.DOCKER_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
           docker build --no-cache -t="verneyzhou/githook-vite-test:latest" . 
           echo "开始登录 阿里云 Docker Registry"
-          docker login -u ${{ secrets.DOCKER_ALI_REGISTRY_USERNAME }} -p ${{ secrets.DOCKER_ALI_REGISTRY_PASSWORD }}
+          docker login --username=${{ secrets.DOCKER_ALI_REGISTRY_USERNAME }} registry.cn-beijing.aliyuncs.com -p ${{ secrets.DOCKER_ALI_REGISTRY_PASSWORD }}
           docker tag verneyzhou/githook-vite-test:latest registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0
           docker push registry.cn-beijing.aliyuncs.com/zhou_aliyun_image/githook-vite-test:v1.0
 
